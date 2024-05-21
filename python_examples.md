@@ -1,3 +1,4 @@
+[w3schools-python](https://www.w3schools.com/python/default.asp)
 
 ### Variables
 
