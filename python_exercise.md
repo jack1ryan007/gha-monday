@@ -1,5 +1,7 @@
 [w3schools-python](https://www.w3schools.com/python/default.asp)
 
+# Exercises
+
 ### Variables
 1. Create variables to store your name, age, and whether you are a student.
 2. Print these variables.
