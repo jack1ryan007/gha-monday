@@ -1,0 +1,25 @@
+name: Run Python Script
+
+on: [push]
+
+jobs:
+  write-date:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run script
+      run: |
+        python -c "
+        from datetime import datetime
+        with open('results.txt', 'a+') as file_name:
+            output_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+            file_name.write(f'{output_date}\n')
+        "
