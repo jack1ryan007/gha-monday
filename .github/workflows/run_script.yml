@@ -10,7 +10,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        persist-credentials: false # Disable automatic token handling
+        token: ${{ secrets.GITHUB_TOKEN }} # Explicitly set the token
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -35,4 +35,4 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add logs/results.txt
         git commit -m 'Update logs/results.txt with new timestamp'
-        git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+        git push
