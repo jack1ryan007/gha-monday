@@ -12,16 +12,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # Explicitly use the token 
-
+        token: ${{ secrets.GITHUB_TOKEN }} 
+        
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
 
-    - name: Run script
+    - name: Install dependencies
       run: |
-        python bitcoin_prices.py
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Run Python script
+      run: |
+        python bitcoin_price.py
 
     - name: Commit changes
       env:
@@ -29,6 +34,6 @@ jobs:
       run: |
         git config --global user.name 'jack1ryan007'
         git config --global user.email 'jack1ryan007@users.noreply.github.com'
-        git add results.txt
-        git commit -m 'Update results.txt with new timestamp'
+        git add bitcoin_prices.csv
+        git commit -m 'Update rbitcoin_prices.csv with new prices'
         git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
